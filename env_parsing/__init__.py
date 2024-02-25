@@ -1,3 +1,4 @@
+import os
 from typing import Dict
 
 
@@ -32,8 +33,11 @@ class EnvParsing:
 
     def parse(self) -> Dict[str, str]:
         env = {}
+        print(f"current working directory: {os.getcwd()}")
         with open(self.path) as file:
             for line in file:
+                if not line or (len(line) == 1 and line[0] == '\n'):
+                    continue
                 key, value = insert_entry(line)
                 env[key] = value
         self.env = env

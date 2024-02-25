@@ -53,6 +53,28 @@ class TestEnvParsing:
                 assert False
             assert expect[key] == value
 
+    def test_multiple_empty_space(self):
+        file_path = "data/multiple_empty_space.env"
+        file_path = os.path.join("tests", file_path)
+        env_parsing = EnvParsing(file_path).parse()
+        expect = {"START": "hello"}
+        assert_not_empty(env_parsing)
+        for key, value in env_parsing.items():
+            if key not in expect:
+                assert False, f"{key} was not found in expected"
+            assert expect[key] == value
+
+    def test_space_between_entries(self):
+        file_path = "data/space_entries.env"
+        file_path = os.path.join("tests", file_path)
+        env_parsing = EnvParsing(file_path).parse()
+        expect = {"START": "hello", "WORLD": "fire"}
+        assert_not_empty(env_parsing)
+        for key, value in env_parsing.items():
+            if key not in expect:
+                assert False, f"{key} was not found in expected"
+            assert expect[key] == value
+
     def test_three_lines(self):
         file_path = "data/three_lines.env"
         file_path = os.path.join("tests", file_path)
