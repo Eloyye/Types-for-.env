@@ -10,7 +10,7 @@ be used in intellisense in your favorite IDE.
 # How to use using any Jetbrains IDE:
 1. clone this repo
 2. go to settings > "file watchers" > add 
-3. In program field: [absolute path to python executable]
+3. In program field:
 ```
 path/to/python/executable
 ```
